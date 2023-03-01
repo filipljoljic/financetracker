@@ -1,10 +1,19 @@
 <?php
-require 'vendor/autoload.php';
+ini_set('display_errors' , 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-Flight::route('/', function(){
-    echo 'Hello its me Filip';
-});
+require_once ("vendor/autoload.php");
+require_once ("rest/dao/FinanceDao.class.php");
 
-Flight::start();
+$dao = new FinanceDao();
+$results = $dao->get_all(); 
+print_r($results);
+
+// Flight::route('/', function(){
+//     echo 'Hello its me Filip';
+// });
+
+// Flight::start();
 
 ?>  
