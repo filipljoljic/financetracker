@@ -5,10 +5,9 @@ error_reporting(E_ALL);
 
 require_once ("rest/dao/FinanceDao.class.php");
 
-$description = $_REQUEST['description'];
-$created = $_REQUEST['created'];
+$id = $_REQUEST['id'];
 
 $dao = new FinanceDao();
-$results = $dao->add($description, $created); 
-print_r($results);
+$dao->delete($id);
+echo "deleted $id" ;
 ?>

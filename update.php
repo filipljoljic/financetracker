@@ -5,10 +5,12 @@ error_reporting(E_ALL);
 
 require_once ("rest/dao/FinanceDao.class.php");
 
+$id = $_REQUEST['id'];
 $description = $_REQUEST['description'];
 $created = $_REQUEST['created'];
 
+
 $dao = new FinanceDao();
-$results = $dao->add($description, $created); 
-print_r($results);
+$dao->update($id, $description, $created);
+
 ?>
