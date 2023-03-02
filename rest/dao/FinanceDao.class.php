@@ -32,10 +32,11 @@ class FinanceDao{
     }
 
     /* METHOD Inserting files intop the db */
-    public function add($description, $created){
+    public function add($finance){
         $stmt = $this->conn->prepare("INSERT INTO finances (description, created) VALUES (:description, :created)");
-        $stmt->execute(['description' => $description, 'created' => $created]);
-
+        $stmt->execute($finance);
+        $finance['id'] = $this->conn->lastInsertId();
+        return $finance;
     }
 
     /* Delete recorf from db */

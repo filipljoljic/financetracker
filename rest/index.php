@@ -10,21 +10,18 @@ Flight::register('financeDao','FinanceDao');
 
 /* METHODS */
 Flight::route('GET /finances', function(){
-    $finances = Flight::financeDao()->get_all();
-    Flight::json($finances);
+    Flight::json(Flight::financeDao()->get_all());
 });
 
 // single finances
 Flight::route('GET /finances/@id', function($id){
-    $finance = Flight::financeDao()->get_by_id($id);
-    Flight::json($finance);
+    Flight::json(Flight::financeDao()->get_by_id($id));
 });
 
 //Add finances
 Flight::route('POST /finances', function(){
-    $request = Flight::request();
-    $data = $request->data->getData();
-    Flight::financeDao()->add($data['description'], $data['created']);
+    Flight::json(Flight::financeDao()->add(Flight::request()->data->getData()));
+    
 });
 
 //Delete finances
