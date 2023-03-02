@@ -17,11 +17,18 @@ class FinanceDao{
     $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 
-    /* METHOD Read all fils from db */
+    /* METHOD Read all files from db */
     public function get_all(){
         $stmt = $this->conn->prepare("SELECT * FROM finances");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    /* METHOD Read one file from db */
+    public function get_by_id($id){
+        $stmt = $this->conn->prepare("SELECT * FROM finances WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return @reset($result);
     }
 
     /* METHOD Inserting files intop the db */
