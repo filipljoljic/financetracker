@@ -30,6 +30,13 @@ Flight::route('DELETE /finances/@id', function($id){
     Flight::json(["message"=>"deleted"]);
 });
 
+//Update finances
+Flight::route('PUT /finances/@id', function($id){
+    $data = Flight::request()->data->getData();
+    $data['id'] = $id;
+    Flight::json(Flight::financeDao()->update($data));
+});
+
 
 Flight::route('/', function(){
     echo 'Hello';

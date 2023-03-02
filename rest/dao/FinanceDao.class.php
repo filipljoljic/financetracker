@@ -46,9 +46,11 @@ class FinanceDao{
         $stmt->execute();
     }
     /*Update finance records in db */
-    public function update($id, $description, $created){
+    //$finance is simply written description and created and id
+    public function update($finance){
         $stmt = $this->conn->prepare("UPDATE finances SET description=:description, created=:created WHERE id=:id");
-        $stmt->execute(['id'=> $id, 'description' => $description, 'created' => $created]);
+        $stmt->execute($finance);
+        return $finance;
     }
 }
 
