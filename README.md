@@ -1,4 +1,5 @@
 # financetracker
 
 Collaborators:
-Filip Ljoljic
+Filip Ljoljic,
+Muhamed Begic
