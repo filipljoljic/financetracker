@@ -39,7 +39,7 @@ require_once __DIR__."/../Config.class.php";
     public function get_by_id($id){
         $stmt = $this->conn->prepare("SELECT * FROM " . $this->table_name . " WHERE id=:id");
         $stmt->execute(['id' => $id]);
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -75,7 +75,7 @@ require_once __DIR__."/../Config.class.php";
             $query.= $column . "=:" . $column . ", ";
         }
         $query = substr($query, 0, -2);
-        $query.= " WHERE ${id_column} = :id";
+        $query.= " WHERE {$id_column} = :id";
         $stmt = $this->conn->prepare($query);
         $entity['id'] = $id;
         $stmt->execute($entity);
