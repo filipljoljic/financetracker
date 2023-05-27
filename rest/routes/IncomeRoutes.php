@@ -7,12 +7,12 @@ PUT /users/{id}/income/{income_id}: Updates an existing income entry.
 DELETE /users/{id}/income/{income_id}: Deletes an income entry.
 */
 
-Flight::route("GET /users/@id/income", function(){
-    Flight::json(Flight::incomeDao()->get_all());
+Flight::route("GET /users/@id/income", function($user_id){
+    Flight::json(Flight::incomeDao()->get_income_by_user_id($user_id));
 });
 
 Flight::route("GET /users/@id/income/@income_id", function($id, $income_id){
-    Flight::json(Flight::incomeDao()->get_by_id($income_id));
+    Flight::json(Flight::incomeDao()->getIncomeByIDandUserID($id, $income_id));
 });
 
 Flight::route('POST /users/@id/income', function($id){
