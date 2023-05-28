@@ -4,44 +4,17 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once ("../vendor/autoload.php");
-require_once ("dao/FinanceDao.class.php");
+require_once ("dao/BaseDao.class.php");
+require_once ("dao/UserDao.class.php");
+require_once ("dao/IncomeDao.class.php");
 
-Flight::register('financeDao','FinanceDao');
+Flight::register('baseDao','BaseDao');
+Flight::register("userDao", "UserDao");
+Flight::register("incomeDao", "IncomeDao");
 
-/* METHODS */
-Flight::route('GET /finances', function(){
-    Flight::json(Flight::financeDao()->get_all());
-});
-
-// single finances
-Flight::route('GET /finances/@id', function($id){
-    Flight::json(Flight::financeDao()->get_by_id($id));
-});
-
-//Add finances
-Flight::route('POST /finances', function(){
-    Flight::json(Flight::financeDao()->add(Flight::request()->data->getData()));
-    
-});
-
-//Delete finances
-Flight::route('DELETE /finances/@id', function($id){
-    Flight::financeDao()->delete($id);
-    Flight::json(["message"=>"deleted"]);
-});
-
-//Update finances
-Flight::route('PUT /finances/@id', function($id){
-    $data = Flight::request()->data->getData();
-    $data['id'] = $id;
-    Flight::json(Flight::financeDao()->update($data));
-});
-
-
-Flight::route('/', function(){
-    echo 'Hello';
-});
-
+// require routes in index
+require_once 'routes/UserRoutes.php';
+require_once "routes/IncomeRoutes.php";
 
 Flight::start();
 
