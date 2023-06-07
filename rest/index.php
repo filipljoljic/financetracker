@@ -18,4 +18,3 @@ require_once "routes/IncomeRoutes.php";
 
 Flight::start();
 
-?>  
