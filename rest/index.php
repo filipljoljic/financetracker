@@ -17,4 +17,3 @@ require_once 'routes/UserRoutes.php';
 require_once "routes/IncomeRoutes.php";
 
 Flight::start();
-
