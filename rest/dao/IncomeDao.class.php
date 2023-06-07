@@ -36,5 +36,6 @@ class IncomeDao extends BaseDao {
     public function deleteIncome($id) {
         return parent::delete($id);
     }
+    
 }
 ?>
