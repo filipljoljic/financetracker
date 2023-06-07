@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-/* For testing write comand "./vendor/bin/phpunit --testdox tests" for prittier display of results */
+/* For testing write command "./vendor/bin/phpunit --testdox tests" for prittier display of results */
 class Transaction
 {
     private $type;
