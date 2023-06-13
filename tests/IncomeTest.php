@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-/* For testing, run the command "./vendor/bin/phpunit --testdox tests" for a prettier display of results */
+// For testing, run the command "./vendor/bin/phpunit --testdox tests" for a prettier display of results 
 
 class Transaction
 {
@@ -68,6 +68,8 @@ class FinanceTracker
 
 class FinanceTrackerTest extends TestCase
 {
+    // In this test we are adding a transaction to FinanceTracker class and verifying that the transaction was successfully added. 
+
     public function testAddTransaction()
     {
         $financeTracker = new FinanceTracker();
@@ -80,8 +82,11 @@ class FinanceTrackerTest extends TestCase
         $this->assertSame($transaction, $transactions[0]);
     }
 
+    // In this test we are adding two transactions and we are expectiong some result.
+
     public function testCalculateTotalBalance()
     {
+        
         $financeTracker = new FinanceTracker();
 
         $transaction1 = new Transaction('Income', 'Freelance Project', 2000);
@@ -93,6 +98,11 @@ class FinanceTrackerTest extends TestCase
         $balance = $financeTracker->calculateTotalBalance();
         $this->assertEquals(1200, $balance);
     }
+
+    /**
+    * In this test we ensure that the getTransactions method correctly retrieves the transactions from the
+    * FinanceTracker and that the retrieved transactions match the expected values.
+    */
 
     public function testGetTransactions()
     {
@@ -109,6 +119,8 @@ class FinanceTrackerTest extends TestCase
         $this->assertSame($transaction1, $transactions[0]);
         $this->assertSame($transaction2, $transactions[1]);
     }
+
+    // In this test we are verifying the behavior of the FinanceTracker class when there is no transactions.
 
     public function testEmptyFinanceTracker()
     {
