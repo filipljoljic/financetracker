@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Income</title>
+    <script src="js/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="css/income.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add Income</h1>
+      <form id="incomeForm">
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id" name="user_id" required />
+
+        <label for="source">Source:</label>
+        <input type="text" id="source" name="source" required />
+        <span class="error-message" id="source-error"
+          >Please enter text only</span
+        >
+
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required />
+        <span class="error-message" id="amount-error"
+          >Please enter a valid number</span
+        >
+
+        <label for="income_date">Income Date:</label>
+        <input type="date" id="income_date" name="income_date" required />
+
+        <input type="submit" value="Add Income" />
+      </form>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // Handle form submission
+        $("#incomeForm").submit(function (event) {
+          event.preventDefault();
+
+          $(".error-message").removeClass("active");
+
+          // Get form data
+          var formData = {
+            user_id: $("#user_id").val(),
+            source: $("#source").val(),
+            amount: $("#amount").val(),
+            income_date: $("#income_date").val(),
+          };
+
+          // Validate source field
+          if (!/^[a-zA-Z\s]+$/.test(formData.source)) {
+            $("#source-error").addClass("active");
+            return;
+          }
+
+          // Validate amount field
+          if (!$.isNumeric(formData.amount)) {
+            $("#amount-error").addClass("active");
+            return;
+          }
+
+          // Send AJAX request
+          $.ajax({
+            url: "rest/users/" + formData.user_id + "/income",
+            type: "POST",
+            data: formData,
+            success: function (response) {
+              console.log(response);
+            },
+            error: function (xhr, status, error) {
+              console.log(error);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
