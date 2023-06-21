@@ -44,6 +44,15 @@ class UsersRoutesTest extends TestCase
         $this->assertEquals('Mocked response for getting income by user ID', (string) $response->getBody());
     }
 
+    public function testDeleteUserRoute()
+    {
+        $this->mockHandler->append(new Response(200, [], '{"message":"User deleted successfully"}'));
+
+        // Replace {id} with the actual user ID you want to test
+        $response = $this->client->delete('/users/{id}');
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertJsonStringEqualsJsonString('{"message":"User deleted successfully"}', (string) $response->getBody());
+    }
 }
 
 
