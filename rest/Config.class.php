@@ -3,25 +3,22 @@
 class Config {
     public static function DB_HOST()
     {
-        // return 'localhost';
-        return 'localhost';
+
+        return 'db4free.net';
     }
 
     public static function DB_USERNAME()
     {
-        // return 'root';
-        return 'root';
+        return 'finance';
     }
 
     public static function DB_PASSWORD()
     {
-        // return 'root';
         return '864950sa';
     }
 
     public static function DB_SCHEMA()
     {
-        // return 'finance';
-        return 'finance';
+        return 'financetracker';
     }
 }
