@@ -12,7 +12,7 @@
         <label for="user_id">User ID:</label>
         <input type="text" id="user_id" name="user_id" required />
 
-        <label for="source">Item:</label>
+        <label for="item">Item:</label>
         <input type="text" id="item" name="item" required />
         <span class="error-message" id="source-error"
           >Please enter text only</span
@@ -24,7 +24,7 @@
           >Please enter a valid number</span
         >
 
-        <label for="income_date">Expense Date:</label>
+        <label for="expense_date">Expense Date:</label>
         <input type="date" id="expense_date" name="expense_date" required />
 
         <input type="submit" value="Add Expense" />
@@ -42,13 +42,13 @@
           // Get form data
           var formData = {
             user_id: $("#user_id").val(),
-            source: $("#item").val(),
+            item: $("#item").val(),
             amount: $("#amount").val(),
-            income_date: $("#expense_date").val(),
+            expense_date: $("#expense_date").val(),
           };
 
-          // Validate source field
-          if (!/^[a-zA-Z\s]+$/.test(formData.source)) {
+          // Validate item field
+          if (!/^[a-zA-Z\s]+$/.test(formData.item)) {
             $("#source-error").addClass("active");
             return;
           }
